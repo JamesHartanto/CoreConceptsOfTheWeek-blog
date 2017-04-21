@@ -3,7 +3,9 @@ package com.theironyard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
@@ -12,17 +14,25 @@ import java.time.LocalDateTime;
  * Created by JamesHartanto on 4/20/17.
  */
 @Controller
+@SessionAttributes("userId")
 public class BlogController {
 
     @Autowired
     PersonRepository personRepository;
     @Autowired
     RepositoryService repositoryService;
+    @Autowired
+    BlogRepository blogRepository;
+
+    @ModelAttribute("userId")
+    public Integer userId(){
+        return 0;
+    }
 
     // Provide login details
     @RequestMapping("/loginPage")
-//    @GetMapping("/")
-    public String loginPage(HttpSession session, Model model){
+//    @GetMapping("/loginPage")
+    public String loginPage(){
         return "loginPage";
     }
 
@@ -34,20 +44,17 @@ public class BlogController {
             // Check the password is correct
             Person personToCheck = personRepository.findPerson(username);
             if (personToCheck.getPassword().equals(password)){
+                // gives the user a unique session id
+                model.asMap().put("userId",personToCheck.getId());
                 return "redirect:/homePage";
-//                return "redirect:/homePage?personId="+personToCheck.getId();
-            } else {
-                return "redirect:/badLogin";
             }
-        } else {
-            return "redirect:/badLogin";
         }
+        return "redirect:/badLogin";
     }
 
     // login page with error message
     @RequestMapping("/badLogin")
-    public String badLogin(Model model, String username){
-        model.addAttribute("username",username);
+    public String badLogin(){
         return "badLogin";
     }
 
@@ -59,15 +66,13 @@ public class BlogController {
             return "/newUser";
         }
         // Checks to see unique username and validity of password inputs
-        if (repositoryService.uniqueUsername(username, repositoryService.usernameList(personRepository.listPeople())) && (password1.equals(password2))) {
+        if (repositoryService.uniqueUsername(username, repositoryService.usernameList(personRepository.listPeople()))
+                && (password1.equals(password2))) {
             Person person = new Person(username,password1);
-            person.setUsername(username);
-            person.setPassword(password1);
             personRepository.createPerson(person);
             return "redirect:/loginPage";
-        } else {
-            return "redirect:/badNewUser";
         }
+        return "redirect:/badNewUser";
     }
 
     // new user with bad input
@@ -83,6 +88,13 @@ public class BlogController {
     @RequestMapping("/homePage")
     public String homePage(){
         return "/homePage";
+    }
+
+    // View User's blogs
+    @RequestMapping("/viewMyBlogs")
+    public String viewMyBlogs(Model model, @ModelAttribute("userId") Integer userId){
+        model.addAttribute("myBlogs",blogRepository.listMyBlogs(userId));
+        return "/viewMyBlogs";
     }
 
     // Creating a blog

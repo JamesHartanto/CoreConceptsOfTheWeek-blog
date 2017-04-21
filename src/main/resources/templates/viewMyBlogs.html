@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Home Page Of Blog</title>
+    <meta charset="UTF-8">
+    <title>View the User's blogs</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
 
@@ -10,34 +10,23 @@
 </head>
 <body>
 
-<h2>Hello <span>Name</span>!</h2>
+<h2>Your Blogs</h2>
 
-<nav>
-    <ul>
-        <li><a href="createBlog.html" th:href="@{/createBlog}">Create A Blog</a></li>
-        <li><a href="loginPage.html" th:href="@{/loginPage}">Logout</a></li>
-    </ul>
-</nav>
-
-<h3>POSTS</h3>
 <table>
     <tr>
         <th>Title</th>
         <th>Content</th>
-        <th>Author</th>
         <th>Date</th>
     </tr>
     <!--want to loop through the posts here-->
     <tr>
         <th>Title 1</th>
         <th>Content 1</th>
-        <th>Author 1</th>
         <th>Date 1</th>
     </tr>
     <tr th:remove="all">
         <th>Title 2</th>
         <th>Content 2</th>
-        <th>Author 2</th>
         <th>Date 2</th>
     </tr>
 </table>

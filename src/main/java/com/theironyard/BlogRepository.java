@@ -25,6 +25,18 @@ public class BlogRepository {
                 ));
     }
 
+    // List a specific user's blogs
+    public List<Blog> listMyBlogs(Integer userId) {
+        return jdbcTemplate.query("SELECT * FROM blogs WHERE person_id=?",
+                new Object[]{userId},
+                (resultSet, i) -> new Blog(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("person_id"),
+                        resultSet.getString("blog"),
+                        resultSet.getString("date")
+                ));
+    }
+
     // Add blog post
     public void addBlogPost(Blog blog){
         jdbcTemplate.update("INSERT INTO blogs(person_id, blog, date) VALUES (?,?,?)",
