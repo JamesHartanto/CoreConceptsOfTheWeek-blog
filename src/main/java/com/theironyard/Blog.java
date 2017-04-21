@@ -1,30 +1,29 @@
 package com.theironyard;
-
-import java.time.LocalDate;
-import java.util.Date;
-
 /**
  * Created by JamesHartanto on 4/21/17.
  */
 public class Blog {
     private Integer id;
     private Integer person_id;
-    private String blog;
+    private String title;
+    private String post;
     private String date;
 
     public Blog() {
     }
 
-    public Blog(Integer person_id, String blog, String date) {
+    public Blog(Integer person_id, String title, String post, String date) {
         this.person_id = person_id;
-        this.blog = blog;
+        this.title = title;
+        this.post = post;
         this.date = date;
     }
 
-    public Blog(Integer id, Integer person_id, String blog, String date) {
+    public Blog(Integer id, Integer person_id, String title, String post, String date) {
         this.id = id;
         this.person_id = person_id;
-        this.blog = blog;
+        this.title = title;
+        this.post = post;
         this.date = date;
     }
 
@@ -44,12 +43,20 @@ public class Blog {
         this.person_id = person_id;
     }
 
-    public String getBlog() {
-        return blog;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBlog(String blog) {
-        this.blog = blog;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getPost() {
+        return post;
+    }
+
+    public void setPost(String post) {
+        this.post = post;
     }
 
     public String getDate() {

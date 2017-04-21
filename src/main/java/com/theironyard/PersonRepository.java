@@ -26,7 +26,7 @@ public class PersonRepository {
 
     // Select a person based on username
     public Person findPerson(String username){
-        return jdbcTemplate.queryForObject("SELECT * FROM person WHERE lower(username) = ?",
+        return jdbcTemplate.queryForObject("SELECT * FROM person WHERE lower(username) = lower(?)",
                 new Object[]{username},
                 (resultSet, i) -> new Person(
                         resultSet.getInt("id"),

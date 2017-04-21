@@ -16,10 +16,23 @@ public class BlogRepository {
 
     // List blog posts
     public List<Blog> listBlogs(){
-        return jdbcTemplate.query("SELECT * FROM blogs",
+        return jdbcTemplate.query("SELECT * FROM blogs ORDER BY id DESC LIMIT 25",
                 (resultSet, i) -> new Blog(
                         resultSet.getInt("id"),
                         resultSet.getInt("person_id"),
+                        resultSet.getString("title"),
+                        resultSet.getString("blog"),
+                        resultSet.getString("date")
+                ));
+    }
+
+    // List MORE blog posts
+    public List<Blog> listMoreBlogs(){
+        return jdbcTemplate.query("SELECT * FROM blogs ORDER BY id DESC LIMIT 50",
+                (resultSet, i) -> new Blog(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("person_id"),
+                        resultSet.getString("title"),
                         resultSet.getString("blog"),
                         resultSet.getString("date")
                 ));
@@ -27,26 +40,27 @@ public class BlogRepository {
 
     // List a specific user's blogs
     public List<Blog> listMyBlogs(Integer userId) {
-        return jdbcTemplate.query("SELECT * FROM blogs WHERE person_id=?",
+        return jdbcTemplate.query("SELECT * FROM blogs WHERE person_id=? ORDER BY id DESC",
                 new Object[]{userId},
                 (resultSet, i) -> new Blog(
                         resultSet.getInt("id"),
                         resultSet.getInt("person_id"),
-                        resultSet.getString("blog"),
+                        resultSet.getString("title"),
+                        resultSet.getString("post"),
                         resultSet.getString("date")
                 ));
     }
 
     // Add blog post
     public void addBlogPost(Blog blog){
-        jdbcTemplate.update("INSERT INTO blogs(person_id, blog, date) VALUES (?,?,?)",
-                new Object[]{blog.getPerson_id(), blog.getBlog(), blog.getDate()});
+        jdbcTemplate.update("INSERT INTO blogs(person_id, title, blog, date) VALUES (?,?,?,?)",
+                new Object[]{blog.getPerson_id(), blog.getTitle(), blog.getPost(), blog.getDate()});
     }
 
     // Edit blog post
     public void editBlogPost(Blog blog){
-        jdbcTemplate.update("UPDATE blogs SET blog = ?, date = ? WHERE id = ?",
-                new Object[]{blog.getBlog(),blog.getDate(),blog.getId()});
+        jdbcTemplate.update("UPDATE blogs SET title=? blog = ?, date = ? WHERE id = ?",
+                new Object[]{blog.getTitle(), blog.getPost(),blog.getDate(),blog.getId()});
     }
 
     // Delete blog post

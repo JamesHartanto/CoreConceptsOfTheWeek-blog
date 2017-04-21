@@ -28,9 +28,9 @@
         <th>Date</th>
     </tr>
     <!--want to loop through the posts here-->
-    <tr>
-        <th>Title 1</th>
-        <th>Content 1</th>
+    <tr th:each="blog:${blogList}">
+        <th th:text="${blog.getTitle()}">Title 1</th>
+        <th th:text="${blog.getBlog()}">Content 1</th>
         <th>Author 1</th>
         <th>Date 1</th>
     </tr>

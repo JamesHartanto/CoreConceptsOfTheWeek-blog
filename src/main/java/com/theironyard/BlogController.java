@@ -75,10 +75,9 @@ public class BlogController {
         return "redirect:/badNewUser";
     }
 
-    // new user with bad input
+    // new user with bad input error message
     @RequestMapping("/badNewUser")
     public String badNewUser() {
-        // has error message, still links back to newUser for logic
         return "/badNewUser";
     }
 
@@ -86,15 +85,9 @@ public class BlogController {
 
     // Home Page of the blog
     @RequestMapping("/homePage")
-    public String homePage(){
+    public String homePage(Model model){
+        model.addAttribute("blogList",blogRepository.listBlogs());
         return "/homePage";
-    }
-
-    // View User's blogs
-    @RequestMapping("/viewMyBlogs")
-    public String viewMyBlogs(Model model, @ModelAttribute("userId") Integer userId){
-        model.addAttribute("myBlogs",blogRepository.listMyBlogs(userId));
-        return "/viewMyBlogs";
     }
 
     // Creating a blog
@@ -105,6 +98,13 @@ public class BlogController {
         return "createBlog";
     }
 
+    // View User's blogs
+    @RequestMapping("/viewMyBlogs")
+    public String viewMyBlogs(Model model, @ModelAttribute("userId") Integer userId){
+        model.addAttribute("myBlogs",blogRepository.listMyBlogs(userId));
+        return "/viewMyBlogs";
+    }
+
     // View a blog post
     @RequestMapping("/viewBlogPost")
     public String viewBlogPost(){
@@ -113,10 +113,11 @@ public class BlogController {
 
     // Edit Delete ONLY IF YOU ARE THE AUTHOR
     @RequestMapping("/editDeletePost")
-    public String editDelete(Integer idOfPost){
+    public String editDelete(Blog blog){
         // need to check that person_id of post belongs to
         return "redirect:/viewBlogPost";
     }
+
 
     // logout
     @RequestMapping(path = "/logout")
