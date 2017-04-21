@@ -1,0 +1,47 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+
+nav li{
+    display: inline-block;
+    padding: 0.25em;
+    margin: 0.125em;
+    border: 1px solid black;
+}
+
+nav ul{
+    margin: 0;
+    padding: 0;
+}
+
+nav{
+    background-color: lightgrey;
+    display: block;
+    padding: 0.25em;
+}
+
+table{
+    border-collapse: collapse;
+    min-width: 25%;
+}
+
+th {
+    background-color: lightgrey;
+}
+
+td, th{
+    border: 1px solid black;
+    margin: 0;
+    padding: 0.25em;
+}
+
+label{
+    display: block;
+
+}
+
+label span{
+    display: inline-block;
+    width: 8em;
+}

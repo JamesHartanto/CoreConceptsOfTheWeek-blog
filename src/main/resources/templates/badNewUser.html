@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Invalid creation of new user</title>
+</head>
+<body>
+
+<h2>Create Your Account</h2>
+
+<!--<form action="/homePage.html" th:action="@{/newUser}" method="post">-->
+<form action="/homePage.html" th:action="@{/newUser}">
+    <span>There was an error: either the username you entered has been taken or your passwords did not match!</span> <br />
+    <span>Username:</span><input type="text" name="username" value="" required="required"/> <br />
+    <span>Password:</span><input type="password" name="password1" value="" required="required"/> <br />
+    <span>Check Password:</span><input type="password" name="password2" value="" required="required"/> <br />
+    <button>Create New User</button>
+</form>
+
+<a href="loginPage.html" th:href="@{/}">Return to Login</a>
+
+</body>
+</html>

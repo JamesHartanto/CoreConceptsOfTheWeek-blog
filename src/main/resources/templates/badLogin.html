@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>The same as index.html just with error message</title>
+</head>
+<body>
+
+<h2>Login</h2>
+
+<form action="homePage.html" th:action="@{/login}">
+    <span>Invalid login! Try again!</span> <br />
+    <!--<form action="homePage.html" th:action="@{/login}" method="post">-->
+    <span>Username login:</span><input type="text" name="username" value="" required="required"/><br />
+    <span>Password:</span><input type="password" name="password" value="" required="required"/><br />
+    <button>Login</button>
+</form>
+
+<a href="newUser.html" th:href="@{/newUser}">New User?</a>
+
+
+</body>
+</html>

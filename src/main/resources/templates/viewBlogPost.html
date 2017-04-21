@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>View Blog Post</title>
+</head>
+<body>
+
+<nav>
+    <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
+    <li><a href="createBlog.html" th:href="@{/createBlog}">Home</a></li>
+    <li><a href="loginPage.html" th:href="@{/loginPage}">Logout</a></li>
+</nav>
+
+<a href="viewBlogPost.html" th:href="@{/editDeletePost}">Edit/Delete Post</a>
+<h2>Title</h2>
+<h5>Date</h5>
+
+<h4>Blog Content</h4>
+
+<form action="viewBlogPost.html" th:action="@{/viewBlogPost}">
+    <input type="checkbox" name="like" />Like <br />
+    Comment: <textarea name="comment" rows="4" cols="50"></textarea>
+    <button>Give my opinion!</button>
+</form>
+
+
+</body>
+</html>

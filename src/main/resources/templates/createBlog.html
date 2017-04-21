@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Create Blog</title>
+</head>
+<body>
+
+<nav>
+    <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
+    <li><a href="loginPage.html" th:href="@{/}">Logout</a></li>
+</nav>
+
+<h2>Create a Blog</h2>
+
+<form action="homePage.html" th:action="@{/homePage}">
+    <span>Title: </span><input type="text" name="title" value="" required="required" /> <br/>
+    <span>Blog: </span><textarea name="content" required="required" rows="7" cols="50"></textarea><br/>
+    <span>Date: </span><input type="hidden" name="date" th:value="${time}" required="required" /> <br/>
+    <button>POST!</button>
+</form>
+
+</body>
+</html>
