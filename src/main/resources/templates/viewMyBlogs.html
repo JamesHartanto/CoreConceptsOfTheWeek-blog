@@ -13,21 +13,29 @@
 <h2>Your Blogs</h2>
 
 <table>
-    <tr>
+    <tr th:each="blog:${myBlogs}">
         <th>Title</th>
         <th>Content</th>
         <th>Date</th>
+        <th>More Details</th>
     </tr>
     <!--want to loop through the posts here-->
     <tr>
-        <th>Title 1</th>
-        <th>Content 1</th>
-        <th>Date 1</th>
+        <td th:text="${blog.getTitle()}">Title 1</td>
+        <td th:text="${blog.getPost()}">Content 1</td>
+        <td th:text="${blog.getDate()}">Date 1</td>
+        <td>
+            <a href="viewBlogPost.html" th:href="@{'/viewBlogPost?blogId=' + ${blog.getId()}}">View</a>
+        </td>
     </tr>
     <tr th:remove="all">
-        <th>Title 2</th>
-        <th>Content 2</th>
-        <th>Date 2</th>
+        <td>Title 2</td>
+        <td>Content 2</td>
+        <td>Date 2</td>
+        <td>
+            <a href="viewBlogPost.html">View</a>
+        </td>
+
     </tr>
 </table>
 

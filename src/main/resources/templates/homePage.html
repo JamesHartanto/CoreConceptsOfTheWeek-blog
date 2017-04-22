@@ -29,16 +29,16 @@
     </tr>
     <!--want to loop through the posts here-->
     <tr th:each="blog:${blogList}">
-        <th th:text="${blog.getTitle()}">Title 1</th>
-        <th th:text="${blog.getBlog()}">Content 1</th>
-        <th>Author 1</th>
-        <th>Date 1</th>
+        <td th:text="${blog.getTitle()}">Title 1</td>
+        <td th:text="${blog.getBlog()}">Content 1</td>
+        <td>Author 1</td>
+        <td>Date 1</td>
     </tr>
     <tr th:remove="all">
-        <th>Title 2</th>
-        <th>Content 2</th>
-        <th>Author 2</th>
-        <th>Date 2</th>
+        <td>Title 2</td>
+        <td>Content 2</td>
+        <td>Author 2</td>
+        <td>Date 2</td>
     </tr>
 </table>
 
