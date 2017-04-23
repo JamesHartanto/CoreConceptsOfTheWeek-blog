@@ -1,5 +1,6 @@
 package com.theironyard;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,6 +12,9 @@ import java.util.List;
 @Component
 public class RepositoryService {
 
+    @Autowired
+    PersonRepository personRepository;
+
     // List of usernames
     public ArrayList<String> usernameList(List<Person> list){
         ArrayList<String> userList = new ArrayList<>();
@@ -18,6 +22,15 @@ public class RepositoryService {
             userList.add(list.get(x).getUsername());
         }
         return userList;
+    }
+
+    // List of people based on blog id
+    public ArrayList<String> usernameFromBlogId(List<Blog> blogList){
+        ArrayList<String> usernameList = new ArrayList<>();
+        for (int x = 0; x < blogList.size(); x = x + 1){
+            usernameList.add(personRepository.selectPerson(blogList.get(x).getPerson_id()).getUsername());
+        }
+        return usernameList;
     }
 
     // Checks if username is taken

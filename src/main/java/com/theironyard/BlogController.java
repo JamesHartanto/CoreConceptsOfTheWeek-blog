@@ -85,7 +85,8 @@ public class BlogController {
 
     // Home Page of the blog
     @RequestMapping("/homePage")
-    public String homePage(Model model){
+    public String homePage(Model model,@ModelAttribute("userId") Integer userId){
+        model.addAttribute("user",personRepository.selectPerson(userId));
         model.addAttribute("blogList",blogRepository.listBlogs());
         return "/homePage";
     }
@@ -98,10 +99,20 @@ public class BlogController {
         return "createBlog";
     }
 
+    // Save blog
+    @RequestMapping("/saveBlog")
+    public String saveBlog(@ModelAttribute("userId") Integer userId, String title, String post){
+        String time = LocalDateTime.now().toString();
+        Blog blog = new Blog(userId, title, post, time);
+        blogRepository.addBlogPost(blog);
+        return "redirect:/viewMyBlogs";
+    }
+
     // View User's blogs
     @RequestMapping("/viewMyBlogs")
     public String viewMyBlogs(Model model, @ModelAttribute("userId") Integer userId){
         model.addAttribute("myBlogs",blogRepository.listMyBlogs(userId));
+        model.addAttribute("author",repositoryService.usernameFromBlogId(blogRepository.listMyBlogs(userId)));
         return "/viewMyBlogs";
     }
 

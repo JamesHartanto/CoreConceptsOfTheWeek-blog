@@ -10,11 +10,12 @@
 </head>
 <body>
 
-<h2>Hello <span>Name</span>!</h2>
+<h2>Hello <span th:text="${user.getUsername()}">Name</span>!</h2>
 
 <nav>
     <ul>
         <li><a href="createBlog.html" th:href="@{/createBlog}">Create A Blog</a></li>
+        <li><a href="viewMyBlogs.html" th:href="@{/viewMyBlogs}">View My Blogs</a></li>
         <li><a href="loginPage.html" th:href="@{/loginPage}">Logout</a></li>
     </ul>
 </nav>
@@ -31,8 +32,9 @@
     <tr th:each="blog:${blogList}">
         <td th:text="${blog.getTitle()}">Title 1</td>
         <td th:text="${blog.getBlog()}">Content 1</td>
-        <td>Author 1</td>
-        <td>Date 1</td>
+        <!--Need to get author name by id of blog-->
+        <td th:text="${name}">Author 1</td>
+        <td th:text="${blog.getDate()}">Date 1</td>
     </tr>
     <tr th:remove="all">
         <td>Title 2</td>

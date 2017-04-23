@@ -19,8 +19,7 @@
 
 <form action="homePage.html" th:action="@{/saveBlog}">
     <span>Title: </span><input type="text" name="title" value="" required="required" /> <br/>
-    <span>Blog: </span><textarea name="content" required="required" rows="7" cols="50"></textarea><br/>
-    <span>Date: </span><input type="hidden" name="date" th:value="${time}" required="required" /> <br/>
+    <span>Blog: </span><textarea name="post" required="required" rows="7" cols="50"></textarea><br/>
     <button>POST!</button>
 </form>
 

@@ -24,6 +24,15 @@ public class PersonRepository {
                         resultSet.getString("password")));
     }
 
+    // Select person based on id
+    public Person selectPerson(Integer userId){
+        return jdbcTemplate.queryForObject("SELECT * FROM person WHERE id = ?",
+                new Object[]{userId},
+                (resultSet, i) -> new Person(
+                        resultSet.getInt("id"),
+                        resultSet.getString("username")));
+    }
+
     // Select a person based on username
     public Person findPerson(String username){
         return jdbcTemplate.queryForObject("SELECT * FROM person WHERE lower(username) = lower(?)",

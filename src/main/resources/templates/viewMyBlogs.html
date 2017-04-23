@@ -10,17 +10,22 @@
 </head>
 <body>
 
+<nav>
+    <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
+    <li><a href="createBlog.html" th:href="@{/createBlog}">Home</a></li>
+    <li><a href="loginPage.html" th:href="@{/loginPage}">Logout</a></li>
+</nav>
+
 <h2>Your Blogs</h2>
 
 <table>
-    <tr th:each="blog:${myBlogs}">
+    <tr >
         <th>Title</th>
         <th>Content</th>
         <th>Date</th>
         <th>More Details</th>
     </tr>
-    <!--want to loop through the posts here-->
-    <tr>
+    <tr th:each="blog:${myBlogs}">
         <td th:text="${blog.getTitle()}">Title 1</td>
         <td th:text="${blog.getPost()}">Content 1</td>
         <td th:text="${blog.getDate()}">Date 1</td>
