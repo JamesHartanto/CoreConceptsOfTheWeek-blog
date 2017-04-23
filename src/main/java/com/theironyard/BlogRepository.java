@@ -21,7 +21,7 @@ public class BlogRepository {
                         resultSet.getInt("id"),
                         resultSet.getInt("person_id"),
                         resultSet.getString("title"),
-                        resultSet.getString("blog"),
+                        resultSet.getString("post"),
                         resultSet.getString("date")
                 ));
     }
@@ -33,7 +33,7 @@ public class BlogRepository {
                         resultSet.getInt("id"),
                         resultSet.getInt("person_id"),
                         resultSet.getString("title"),
-                        resultSet.getString("blog"),
+                        resultSet.getString("post"),
                         resultSet.getString("date")
                 ));
     }
@@ -53,7 +53,7 @@ public class BlogRepository {
 
     // Add blog post
     public void addBlogPost(Blog blog){
-        jdbcTemplate.update("INSERT INTO blogs(person_id, title, blog, date) VALUES (?,?,?,?)",
+        jdbcTemplate.update("INSERT INTO blogs(person_id, title, post, date) VALUES (?,?,?,?)",
                 new Object[]{blog.getPerson_id(), blog.getTitle(), blog.getPost(), blog.getDate()});
     }
 
@@ -67,5 +67,18 @@ public class BlogRepository {
     public void deleteBlogPost(Blog blog){
         jdbcTemplate.update("DELETE blogs WHERE id = ?",
                 new Object[]{blog.getId()});
+    }
+
+    // View a particular blog
+    public Blog viewABlog(Integer blogId) {
+        return jdbcTemplate.queryForObject("SELECT * FROM blogs WHERE id = ?",
+                new Object[]{blogId},
+                (resultSet, i) -> new Blog(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("person_id"),
+                        resultSet.getString("title"),
+                        resultSet.getString("post"),
+                        resultSet.getString("date")
+                ));
     }
 }

@@ -27,20 +27,26 @@
         <th>Content</th>
         <th>Author</th>
         <th>Date</th>
+        <th>View Post</th>
     </tr>
     <!--want to loop through the posts here-->
     <tr th:each="blog:${blogList}">
         <td th:text="${blog.getTitle()}">Title 1</td>
-        <td th:text="${blog.getBlog()}">Content 1</td>
-        <!--Need to get author name by id of blog-->
-        <td th:text="${name}">Author 1</td>
+        <td th:text="${blog.getPost()}">Content 1</td>
+        <td th:text="${blog.getUsername()}">Author 1</td>
         <td th:text="${blog.getDate()}">Date 1</td>
+        <td>
+            <a href="viewBlogPost.html" th:href="@{'/viewBlogPost?postId='+${blog.getId()}}">View</a>
+        </td>
     </tr>
     <tr th:remove="all">
         <td>Title 2</td>
         <td>Content 2</td>
         <td>Author 2</td>
         <td>Date 2</td>
+        <td>
+            <a href="viewBlogPost.html">View</a>
+        </td>
     </tr>
 </table>
 
