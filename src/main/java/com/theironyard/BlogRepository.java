@@ -16,8 +16,9 @@ public class BlogRepository {
 
     // List blog posts
     public List<Blog> listBlogs(String search){
-        return jdbcTemplate.query("SELECT * FROM blogs ORDER BY id DESC WHERE " +
-                        "lower(title) LIKE lower(?)",
+        return jdbcTemplate.query("SELECT * FROM blogs WHERE " +
+                        "lower(title) LIKE lower(?) " +
+                        "ORDER BY id DESC",
                 new Object[]{"%" + search + "%"},
                 (resultSet, i) -> new Blog(
                         resultSet.getInt("id"),

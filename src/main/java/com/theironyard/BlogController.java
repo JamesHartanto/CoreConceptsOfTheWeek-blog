@@ -118,8 +118,8 @@ public class BlogController {
 
     // View a blog post
     @RequestMapping("/viewBlogPost")
-    public String viewBlogPost(Model model, Integer blogId){
-        model.addAttribute("blogPost",repositoryService.usernameOfPost(blogId));
+    public String viewBlogPost(Model model, Integer id){
+        model.addAttribute("blogPost",repositoryService.usernameOfPost(id));
         return "viewBlogPost";
     }
 

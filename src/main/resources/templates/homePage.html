@@ -45,7 +45,7 @@
         <td th:text="${blog.getUsername()}">Author 1</td>
         <td th:text="${blog.getDate()}">Date 1</td>
         <td>
-            <a href="viewBlogPost.html" th:href="@{'/viewBlogPost?postId='+${blog.getId()}}">View</a>
+            <a href="viewBlogPost.html" th:href="@{'/viewBlogPost?id='+${blog.getId()}}">View</a>
         </td>
     </tr>
     <tr th:remove="all">
