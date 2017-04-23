@@ -21,6 +21,15 @@
 </nav>
 
 <h3>POSTS</h3>
+
+<form action="homePage.html" th:action="@{/homePage}">
+    <label>
+        <span>Search:</span>
+        <input type="text" name="search" value="" th:value="${search}"/>
+    </label>
+    <button>Search</button>
+</form>
+
 <table>
     <tr>
         <th>Title</th>

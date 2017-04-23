@@ -15,8 +15,10 @@ public class BlogRepository {
     JdbcTemplate jdbcTemplate;
 
     // List blog posts
-    public List<Blog> listBlogs(){
-        return jdbcTemplate.query("SELECT * FROM blogs ORDER BY id DESC LIMIT 25",
+    public List<Blog> listBlogs(String search){
+        return jdbcTemplate.query("SELECT * FROM blogs ORDER BY id DESC WHERE " +
+                        "lower(title) LIKE lower(?)",
+                new Object[]{"%" + search + "%"},
                 (resultSet, i) -> new Blog(
                         resultSet.getInt("id"),
                         resultSet.getInt("person_id"),
@@ -25,18 +27,18 @@ public class BlogRepository {
                         resultSet.getString("date")
                 ));
     }
-
-    // List MORE blog posts
-    public List<Blog> listMoreBlogs(){
-        return jdbcTemplate.query("SELECT * FROM blogs ORDER BY id DESC LIMIT 50",
-                (resultSet, i) -> new Blog(
-                        resultSet.getInt("id"),
-                        resultSet.getInt("person_id"),
-                        resultSet.getString("title"),
-                        resultSet.getString("post"),
-                        resultSet.getString("date")
-                ));
-    }
+//
+//    // List MORE blog posts
+//    public List<Blog> listMoreBlogs(){
+//        return jdbcTemplate.query("SELECT * FROM blogs ORDER BY id DESC LIMIT 50",
+//                (resultSet, i) -> new Blog(
+//                        resultSet.getInt("id"),
+//                        resultSet.getInt("person_id"),
+//                        resultSet.getString("title"),
+//                        resultSet.getString("post"),
+//                        resultSet.getString("date")
+//                ));
+//    }
 
     // List a specific user's blogs
     public List<Blog> listMyBlogs(Integer userId) {

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -85,9 +86,11 @@ public class BlogController {
 
     // Home Page of the blog
     @RequestMapping("/homePage")
-    public String homePage(Model model,@ModelAttribute("userId") Integer userId){
+    public String homePage(Model model,@ModelAttribute("userId") Integer userId, @RequestParam(defaultValue = "") String search){
+        // to say hello to username
         model.addAttribute("user",personRepository.selectPerson(userId));
-        model.addAttribute("blogList",repositoryService.peoplePostList(blogRepository.listBlogs()));
+        // list of posts with search parameter
+        model.addAttribute("blogList",repositoryService.peoplePostList(blogRepository.listBlogs(search)));
         return "/homePage";
     }
 
