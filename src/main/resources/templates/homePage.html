@@ -24,7 +24,7 @@
 <table>
     <tr>
         <th>Title</th>
-        <th>Content</th>
+        <!--<th>Content</th>-->
         <th>Author</th>
         <th>Date</th>
         <th>View Post</th>
@@ -32,7 +32,7 @@
     <!--want to loop through the posts here-->
     <tr th:each="blog:${blogList}">
         <td th:text="${blog.getTitle()}">Title 1</td>
-        <td th:text="${blog.getPost()}">Content 1</td>
+        <!--<td th:text="${blog.getPost()}">Content 1</td>-->
         <td th:text="${blog.getUsername()}">Author 1</td>
         <td th:text="${blog.getDate()}">Date 1</td>
         <td>
@@ -41,7 +41,7 @@
     </tr>
     <tr th:remove="all">
         <td>Title 2</td>
-        <td>Content 2</td>
+        <!--<td>Content 2</td>-->
         <td>Author 2</td>
         <td>Date 2</td>
         <td>

@@ -12,16 +12,18 @@
 
 <nav>
     <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
-    <li><a href="createBlog.html" th:href="@{/createBlog}">Home</a></li>
+    <li><a href="createBlog.html" th:href="@{/createBlog}">Create Blog</a></li>
     <li><a href="loginPage.html" th:href="@{/loginPage}">Logout</a></li>
 </nav>
 
 <a href="viewBlogPost.html" th:href="@{/editDeletePost}">Edit/Delete Post</a>
-<h2 th:text="${blogPost.getTitle()}">Title</h2>
-<h4 th:text="${blogPost.getUsername()}">Author</h4>
-<h5 th:text="${blogPost.getDate()}">Date</h5>
+<h2>Title: <span th:text="${blogPost.getTitle()}">JAVA LAVA</span></h2>
+<h4>Author: <span th:text="${blogPost.getUsername()}">Hawaiian</span></h4>
+<h5>Date: <span th:text="${blogPost.getDate()}">TODAY</span></h5>
 
-<h4 th:text="${blogPost.getPost()}">Blog Content</h4>
+<h4>Post: <br/>
+    <span th:text="${blogPost.getPost()}">Learning Java is like jumping into Lava. It's intense.</span>
+</h4>
 
 <form action="viewBlogPost.html" th:action="@{/viewBlogPost}">
     <input type="checkbox" name="like" />LIKE <br />

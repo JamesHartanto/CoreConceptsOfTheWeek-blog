@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>View the User's blogs</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
@@ -12,7 +12,7 @@
 
 <nav>
     <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
-    <li><a href="createBlog.html" th:href="@{/createBlog}">Home</a></li>
+    <li><a href="createBlog.html" th:href="@{/createBlog}">Create Blog</a></li>
     <li><a href="loginPage.html" th:href="@{/loginPage}">Logout</a></li>
 </nav>
 
@@ -21,13 +21,13 @@
 <table>
     <tr >
         <th>Title</th>
-        <th>Content</th>
+        <!--<th>Content</th>-->
         <th>Date</th>
         <th>More Details</th>
     </tr>
     <tr th:each="blog:${myBlogs}">
         <td th:text="${blog.getTitle()}">Title 1</td>
-        <td th:text="${blog.getPost()}">Content 1</td>
+        <!--<td th:text="${blog.getPost()}">Content 1</td>-->
         <td th:text="${blog.getDate()}">Date 1</td>
         <td>
             <a href="viewBlogPost.html" th:href="@{'/viewBlogPost?blogId=' + ${blog.getId()}}">View</a>
@@ -35,7 +35,7 @@
     </tr>
     <tr th:remove="all">
         <td>Title 2</td>
-        <td>Content 2</td>
+        <!--<td>Content 2</td>-->
         <td>Date 2</td>
         <td>
             <a href="viewBlogPost.html">View</a>
