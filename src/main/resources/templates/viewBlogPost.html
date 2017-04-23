@@ -16,7 +16,7 @@
     <li><a href="loginPage.html" th:href="@{/loginPage}">Logout</a></li>
 </nav>
 
-<a href="viewBlogPost.html" th:href="@{/editDeletePost}">Edit/Delete Post</a>
+<a href="editDeleteBlogPost.html" th:href="@{'/editDeleteBlogPost?id='+${blogPost.getId()}}">Edit/Delete Post</a>
 <h2>Title: <span th:text="${blogPost.getTitle()}">JAVA LAVA</span></h2>
 <h4>Author: <span th:text="${blogPost.getUsername()}">Hawaiian</span></h4>
 <h5>Date: <span th:text="${blogPost.getDate()}">TODAY</span></h5>

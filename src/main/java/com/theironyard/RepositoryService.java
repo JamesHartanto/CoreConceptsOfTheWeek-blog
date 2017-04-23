@@ -66,12 +66,4 @@ public class RepositoryService {
         }
     }
 
-    // Checks if blog belongs to user (permission to edit/delete)
-    public boolean blogOwner(Blog blog, Person person){
-        if (blog.getPerson_id() == person.getId()) {
-            return true;
-        }
-            return false;
-    }
-
 }

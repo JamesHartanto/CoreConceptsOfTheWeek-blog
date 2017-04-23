@@ -91,6 +91,8 @@ public class BlogController {
         model.addAttribute("user",personRepository.selectPerson(userId));
         // list of posts with search parameter
         model.addAttribute("blogList",repositoryService.peoplePostList(blogRepository.listBlogs(search)));
+        // make search string persist
+        model.addAttribute("search",search);
         return "/homePage";
     }
 
@@ -124,11 +126,33 @@ public class BlogController {
     }
 
     // Edit Delete ONLY IF YOU ARE THE AUTHOR
-    @RequestMapping("/editDeletePost")
-    public String editDelete(Blog blog){
-        // need to check that person_id of post belongs to
-        return "redirect:/viewBlogPost";
+    @RequestMapping("/editDeleteBlogPost")
+    public String editDelete(Model model, Integer id,@ModelAttribute("userId") Integer userId){
+        BlogPerson blogPerson = repositoryService.usernameOfPost(id);
+        if (blogPerson.getPerson_id() == userId){
+            model.addAttribute("blogPost",repositoryService.usernameOfPost(id));
+            return "editDeleteBlogPost";
+        }
+        // not allowed to edit
+        return "redirect:/homePage";
     }
+
+    // Edit
+    @RequestMapping("/editPost")
+    public String editPost(String title, String post, Integer id, @ModelAttribute("userId") Integer userId){
+        String date = LocalDateTime.now().toString();
+        Blog blog = new Blog(id,userId,title,post,date);
+        blogRepository.editBlogPost(blog);
+        return "redirect:/viewMyBlogs";
+    }
+
+    // Delete
+    @RequestMapping("/deletePost")
+    public String deletePost(Integer id){
+        blogRepository.deleteBlogPost(id);
+        return "redirect:/viewMyBlogs";
+    }
+
 
 
     // logout

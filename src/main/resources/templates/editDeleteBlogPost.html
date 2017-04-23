@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit/Delete</title>
+</head>
+
+<nav>
+    <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
+    <li><a href="viewMyBlogs.html" th:href="@{/viewMyBlogs}">View My Blogs</a></li>
+    <li><a href="loginPage.html" th:href="@{/}">Logout</a></li>
+</nav>
+
+<h2>Edit/Delete Post</h2>
+
+<form action="viewMyBlogs.html" th:action="@{/editPost}">
+    <span>Title: </span><input type="text" name="title" value="" th:value="${blogPost.getTitle()}" required="required" /> <br/>
+    <span>Blog: </span><textarea name="post" th:text="${blogPost.getPost()}" required="required" rows="7" cols="50"></textarea><br/>
+    <input type="hidden" name="id" th:value="${blogPost.getId()}" />
+
+    <button>EDIT POST!</button>
+</form>
+<form action="viewMyBlogs.html" th:action="@{/deletePost}">
+    <input type="hidden" name="id" th:value="${blogPost.getId()}" />
+    <button>DELETE!</button>
+</form>
+
+<body>
+
+</body>
+</html>

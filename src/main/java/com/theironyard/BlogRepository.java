@@ -62,14 +62,14 @@ public class BlogRepository {
 
     // Edit blog post
     public void editBlogPost(Blog blog){
-        jdbcTemplate.update("UPDATE blogs SET title=? blog = ?, date = ? WHERE id = ?",
+        jdbcTemplate.update("UPDATE blogs SET title=?, post = ?, date = ? WHERE id = ?",
                 new Object[]{blog.getTitle(), blog.getPost(),blog.getDate(),blog.getId()});
     }
 
     // Delete blog post
-    public void deleteBlogPost(Blog blog){
+    public void deleteBlogPost(Integer PostId){
         jdbcTemplate.update("DELETE blogs WHERE id = ?",
-                new Object[]{blog.getId()});
+                new Object[]{PostId});
     }
 
     // View a particular blog
