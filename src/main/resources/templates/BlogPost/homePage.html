@@ -40,15 +40,15 @@
         <th>View Post</th>
     </tr>
     <!--want to loop through the posts here-->
-    <tr th:each="blog:${blogList}">
-        <td th:text="${blog.getTitle()}">Title 1</td>
-        <!--<td th:text="${blog.getPost()}">Content 1</td>-->
+    <tr th:each="post:${postList}">
+        <td th:text="${post.getTitle()}">Title 1</td>
+        <!--<td th:text="${post.getPost()}">Content 1</td>-->
         <td>
-            <a th:text="${blog.getUsername()}" href="viewPersonBlogPosts.html" th:href="@{'/viewPersonBlogPosts?username='+${blog.getUsername()}}">Author 1</a>
+            <a th:text="${post.getUsername()}" href="viewPersonBlogPosts.html" th:href="@{'/viewPersonBlogPosts?username='+${post.getUsername()}}">Author 1</a>
         </td>
-        <td th:text="${blog.getDate()}">Date 1</td>
+        <td th:text="${post.getDate()}">Date 1</td>
         <td>
-            <a href="viewBlogPost.html" th:href="@{'/viewBlogPost?id='+${blog.getId()}}">View</a>
+            <a href="viewBlogPost.html" th:href="@{'/viewBlogPost?post_id='+${post.getId()}}">View</a>
         </td>
     </tr>
     <tr th:remove="all">

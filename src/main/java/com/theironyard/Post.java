@@ -1,25 +1,44 @@
 package com.theironyard;
 
-/**
- * Created by JamesHartanto on 4/22/17.
- */
+import java.util.List;
 
-// Just for the author name with the blog... for the homePage.html
-public class BlogPerson {
+/**
+ * Created by JamesHartanto on 4/21/17.
+ */
+public class Post {
     private Integer id;
     private Integer person_id;
     private String title;
     private String post;
     private String date;
-    private String username;
+    private List<PostComment> comments;
 
-    public BlogPerson(Integer id, Integer person_id, String title, String post, String date, String username) {
+
+    public Post() {
+    }
+
+    public Post(Integer person_id, String title, String post, String date) {
+        this.person_id = person_id;
+        this.title = title;
+        this.post = post;
+        this.date = date;
+    }
+
+    public Post(Integer id, Integer person_id, String title, String post, String date) {
         this.id = id;
         this.person_id = person_id;
         this.title = title;
         this.post = post;
         this.date = date;
-        this.username = username;
+    }
+
+    public Post(Integer id, Integer person_id, String title, String post, String date, List<PostComment> comments) {
+        this.id = id;
+        this.person_id = person_id;
+        this.title = title;
+        this.post = post;
+        this.date = date;
+        this.comments = comments;
     }
 
     public Integer getId() {
@@ -62,11 +81,11 @@ public class BlogPerson {
         this.date = date;
     }
 
-    public String getUsername() {
-        return username;
+    public List<PostComment> getComments() {
+        return comments;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setComments(List<PostComment> comments) {
+        this.comments = comments;
     }
 }

@@ -24,15 +24,39 @@
 <h4>Author: <span th:text="${blogPost.getUsername()}">Hawaiian</span></h4>
 <h5>Date: <span th:text="${blogPost.getDate()}">TODAY</span></h5>
 
-<h4>Post: <br/>
-    <span th:text="${blogPost.getPost()}">Learning Java is like jumping into Lava. It's intense.</span>
-</h4>
+<h3>Post: </h3>
+<span th:text="${blogPost.getPost()}">Learning Java is like jumping into Lava. It's intense.</span>
 
-<form action="viewBlogPost.html" th:action="@{/viewBlogPost}">
-    <input type="checkbox" name="like" />LIKE <br />
+<br />
+
+<h4>COMMENTS: </h4>
+<table>
+    <tr >
+        <th>Author</th>
+        <th>Comment</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="comment:${comments}">
+        <td th:text="${comment.getCommentAuthor().getUsername()}">Author 1</td>
+        <td th:text="${comment.getText()}">Comment 1</td>
+        <td th:text="${comment.getCommentAuthor().getDate()}">Date 1</td>
+    </tr>
+    <tr th:remove="all">
+        <td>Author 2</td>
+        <td>Comment 2</td>
+        <td>Date 2</td>
+    </tr>
+</table>
+
+<h3>!!!!!! Give your opinion !!!!!</h3>
+<input type="checkbox"/> LIKE <br />
+
+<form action="viewBlogPost.html" th:action="@{/addComment}">
     Comment: <textarea name="comment" rows="4" cols="50"></textarea> <br/>
+    <input type="hidden" name="post_id" th:value="${blogPost.getId()}"/>
     <button>Give my opinion!</button>
 </form>
+
 
 
 </body>

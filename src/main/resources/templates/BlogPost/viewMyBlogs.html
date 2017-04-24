@@ -27,12 +27,12 @@
         <th>Date</th>
         <th>More Details</th>
     </tr>
-    <tr th:each="blog:${myBlogs}">
-        <td th:text="${blog.getTitle()}">Title 1</td>
-        <!--<td th:text="${blog.getPost()}">Content 1</td>-->
-        <td th:text="${blog.getDate()}">Date 1</td>
+    <tr th:each="post:${myBlogs}">
+        <td th:text="${post.getTitle()}">Title 1</td>
+        <!--<td th:text="${post.getPost()}">Content 1</td>-->
+        <td th:text="${post.getDate()}">Date 1</td>
         <td>
-            <a href="viewBlogPost.html" th:href="@{'/viewBlogPost?id=' + ${blog.getId()}}">View</a>
+            <a href="viewBlogPost.html" th:href="@{'/viewBlogPost?id=' + ${post.getId()}}">View</a>
         </td>
     </tr>
     <tr th:remove="all">

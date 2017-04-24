@@ -41,7 +41,7 @@ SET default_with_oids = false;
 CREATE TABLE blogs (
     id integer NOT NULL,
     person_id integer NOT NULL,
-    blog character varying(500) NOT NULL
+    post character varying(500) NOT NULL
 );
 
 
@@ -120,7 +120,7 @@ ALTER TABLE ONLY person ALTER COLUMN id SET DEFAULT nextval('person_id_seq'::reg
 -- Data for Name: blogs; Type: TABLE DATA; Schema: public; Owner: JamesHartanto
 --
 
-COPY blogs (id, person_id, blog) FROM stdin;
+COPY blogs (id, person_id, post) FROM stdin;
 \.
 
 

@@ -107,7 +107,7 @@ public class BlogController {
     @RequestMapping("/saveBlog")
     public String saveBlog(@ModelAttribute("userId") Integer userId, String title, String post){
         String time = LocalDateTime.now().toString();
-        Blog blog = new Blog(userId, title, post, time);
+        Post blog = new Post(userId, title, post, time);
         blogRepository.addBlogPost(blog);
         return "redirect:/viewMyBlogs";
     }
@@ -129,8 +129,9 @@ public class BlogController {
 
     // View a blog post
     @RequestMapping("/viewBlogPost")
-    public String viewBlogPost(Model model, Integer id){
-        model.addAttribute("blogPost",repositoryService.usernameOfPost(id));
+    public String viewBlogPost(Model model, Integer post_id){
+        model.addAttribute("blogPost",repositoryService.usernameOfPost(post_id));
+        model.addAttribute("comments",blogRepository.listOfPostComments(post_id));
         return "BlogPost/viewBlogPost";
     }
 
@@ -150,7 +151,7 @@ public class BlogController {
     @RequestMapping("/editPost")
     public String editPost(String title, String post, Integer id, @ModelAttribute("userId") Integer userId){
         String date = LocalDateTime.now().toString();
-        Blog blog = new Blog(id,userId,title,post,date);
+        Post blog = new Post(id,userId,title,post,date);
         blogRepository.editBlogPost(blog);
         return "redirect:/viewMyBlogs";
     }
@@ -161,6 +162,17 @@ public class BlogController {
         blogRepository.deleteBlogPost(id);
         return "redirect:/viewMyBlogs";
     }
+
+    // COMMENTS FOR POSTS
+    // Adding comment
+    @RequestMapping("/addComment")
+    public String addComment(Integer post_id, @ModelAttribute("userId") Integer userId, String comment){
+//        post_id,author_id,text,date
+        String time = LocalDateTime.now().toString();
+        blogRepository.addComment(post_id, userId, comment, time);
+        return "redirect:/viewBlogPost?post_id="+ post_id.toString();
+    }
+
 
 
 
