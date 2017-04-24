@@ -6,14 +6,16 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
 
-    <link rel="stylesheet" href="../static/styles.css" th:href="@{/styles.css}"/>
+    <link rel="stylesheet" href="../../static/styles.css" th:href="@{/styles.css}"/>
 </head>
 <body>
 
 <nav>
-    <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
-    <li><a href="createBlog.html" th:href="@{/createBlog}">Create Blog</a></li>
-    <li><a href="loginPage.html" th:href="@{/loginPage}">Logout</a></li>
+    <ul>
+        <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
+        <li><a href="createBlog.html" th:href="@{/createBlog}">Create A Blog Post</a></li>
+        <li><a href="../Login/loginPage.html" th:href="@{/loginPage}">Logout</a></li>
+    </ul>
 </nav>
 
 <h2>Your Blogs</h2>
@@ -30,7 +32,7 @@
         <!--<td th:text="${blog.getPost()}">Content 1</td>-->
         <td th:text="${blog.getDate()}">Date 1</td>
         <td>
-            <a href="viewBlogPost.html" th:href="@{'/viewBlogPost?blogId=' + ${blog.getId()}}">View</a>
+            <a href="viewBlogPost.html" th:href="@{'/viewBlogPost?id=' + ${blog.getId()}}">View</a>
         </td>
     </tr>
     <tr th:remove="all">

@@ -34,7 +34,7 @@ public class BlogController {
     @RequestMapping("/loginPage")
 //    @GetMapping("/loginPage")
     public String loginPage(){
-        return "loginPage";
+        return "Login/loginPage";
     }
 
     // Check if inputs are acceptable
@@ -56,7 +56,7 @@ public class BlogController {
     // login page with error message
     @RequestMapping("/badLogin")
     public String badLogin(){
-        return "badLogin";
+        return "Login/badLogin";
     }
 
     // Creates new user, checks if username was taken
@@ -64,7 +64,7 @@ public class BlogController {
 //    @GetMapping("/newUser")
     public String newUser(Model model, String username, String password1, String password2) {
         if (username == null || password1 == null || password2 == null){
-            return "/newUser";
+            return "Login//newUser";
         }
         // Checks to see unique username and validity of password inputs
         if (repositoryService.uniqueUsername(username, repositoryService.usernameList(personRepository.listPeople()))
@@ -79,27 +79,28 @@ public class BlogController {
     // new user with bad input error message
     @RequestMapping("/badNewUser")
     public String badNewUser() {
-        return "/badNewUser";
+        return "Login//badNewUser";
     }
 
 
 
     // Home Page of the blog
     @RequestMapping("/homePage")
-    public String homePage(Model model,@ModelAttribute("userId") Integer userId, @RequestParam(defaultValue = "") String search){
+    public String homePage(Model model,@ModelAttribute("userId") Integer userId,
+                           @RequestParam(defaultValue = "") String search){
         // to say hello to username
         model.addAttribute("user",personRepository.selectPerson(userId));
         // list of posts with search parameter
         model.addAttribute("blogList",repositoryService.peoplePostList(blogRepository.listBlogs(search)));
         // make search string persist
         model.addAttribute("search",search);
-        return "/homePage";
+        return "BlogPost//homePage";
     }
 
     // Creating a blog
     @RequestMapping("/createBlog")
     public String createBlog(){
-        return "createBlog";
+        return "BlogPost/createBlog";
     }
 
     // Save blog
@@ -111,18 +112,26 @@ public class BlogController {
         return "redirect:/viewMyBlogs";
     }
 
-    // View User's blogs
+    // View another user's blog posts
+    @RequestMapping("/viewPersonBlogPosts")
+    public String viewPersonBlogPosts(Model model,String username){
+        model.addAttribute("AUserBlogList", blogRepository.selectPersonPosts(username));
+        model.addAttribute("username",username);
+        return "BlogPost/viewPersonBlogPosts";
+    }
+
+    // View the User's blog posts
     @RequestMapping("/viewMyBlogs")
     public String viewMyBlogs(Model model, @ModelAttribute("userId") Integer userId){
         model.addAttribute("myBlogs",blogRepository.listMyBlogs(userId));
-        return "/viewMyBlogs";
+        return "BlogPost//viewMyBlogs";
     }
 
     // View a blog post
     @RequestMapping("/viewBlogPost")
     public String viewBlogPost(Model model, Integer id){
         model.addAttribute("blogPost",repositoryService.usernameOfPost(id));
-        return "viewBlogPost";
+        return "BlogPost/viewBlogPost";
     }
 
     // Edit Delete ONLY IF YOU ARE THE AUTHOR
@@ -131,7 +140,7 @@ public class BlogController {
         BlogPerson blogPerson = repositoryService.usernameOfPost(id);
         if (blogPerson.getPerson_id() == userId){
             model.addAttribute("blogPost",repositoryService.usernameOfPost(id));
-            return "editDeleteBlogPost";
+            return "BlogPost/editDeleteBlogPost";
         }
         // not allowed to edit
         return "redirect:/homePage";

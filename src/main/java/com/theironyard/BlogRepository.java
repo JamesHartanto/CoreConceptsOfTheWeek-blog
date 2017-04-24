@@ -28,6 +28,22 @@ public class BlogRepository {
                         resultSet.getString("date")
                 ));
     }
+
+    // List more filtered blog posts by selecting username
+    public List<Blog> selectPersonPosts(String username){
+        return jdbcTemplate.query("SELECT * FROM blogs " +
+                        "JOIN person ON person.id=blogs.person_id " +
+                        "AND person.username = ?" +
+                        "ORDER BY blogs.id DESC",
+                new Object[]{username},
+                (resultSet, i) -> new Blog(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("person_id"),
+                        resultSet.getString("title"),
+                        resultSet.getString("post"),
+                        resultSet.getString("date")
+                ));
+    }
 //
 //    // List MORE blog posts
 //    public List<Blog> listMoreBlogs(){
@@ -68,7 +84,7 @@ public class BlogRepository {
 
     // Delete blog post
     public void deleteBlogPost(Integer PostId){
-        jdbcTemplate.update("DELETE blogs WHERE id = ?",
+        jdbcTemplate.update("DELETE FROM blogs WHERE id = ?",
                 new Object[]{PostId});
     }
 

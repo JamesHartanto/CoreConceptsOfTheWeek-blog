@@ -6,9 +6,12 @@
 </head>
 
 <nav>
-    <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
-    <li><a href="viewMyBlogs.html" th:href="@{/viewMyBlogs}">View My Blogs</a></li>
-    <li><a href="loginPage.html" th:href="@{/}">Logout</a></li>
+    <ul>
+        <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
+        <li><a href="createBlog.html" th:href="@{/createBlog}">Create A Blog Post</a></li>
+        <li><a href="viewMyBlogs.html" th:href="@{/viewMyBlogs}">View My Blog Posts</a></li>
+        <li><a href="../Login/loginPage.html" th:href="@{/loginPage}">Logout</a></li>
+    </ul>
 </nav>
 
 <h2>Edit/Delete Post</h2>

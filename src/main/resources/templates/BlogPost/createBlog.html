@@ -6,14 +6,16 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
 
-    <link rel="stylesheet" href="../static/styles.css" th:href="@{/styles.css}"/>
+    <link rel="stylesheet" href="../../static/styles.css" th:href="@{/styles.css}"/>
 </head>
 <body>
 
 <nav>
-    <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
-    <li><a href="viewMyBlogs.html" th:href="@{/viewMyBlogs}">View My Blogs</a></li>
-    <li><a href="loginPage.html" th:href="@{/}">Logout</a></li>
+    <ul>
+        <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
+        <li><a href="viewMyBlogs.html" th:href="@{/viewMyBlogs}">View My Blog Posts</a></li>
+        <li><a href="../Login/loginPage.html" th:href="@{/loginPage}">Logout</a></li>
+    </ul>
 </nav>
 
 <h2>Create a Blog</h2>

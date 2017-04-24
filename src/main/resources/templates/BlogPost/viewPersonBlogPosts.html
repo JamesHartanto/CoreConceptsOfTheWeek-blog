@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>View all of a person's posts</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../../static/styles.css" th:href="@{/styles.css}"/>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="homePage.html" th:href="@{/homePage}">Home</a></li>
+        <li><a href="createBlog.html" th:href="@{/createBlog}">Create A Blog Post</a></li>
+        <li><a href="viewMyBlogs.html" th:href="@{/viewMyBlogs}">View My Blog Posts</a></li>
+        <li><a href="../Login/loginPage.html" th:href="@{/loginPage}">Logout</a></li>
+    </ul>
+</nav>
+
+<h2><span th:text="${username}">Your</span> Blog</h2>
+
+<table>
+    <tr >
+        <th>Title</th>
+        <th>Date</th>
+        <th>More Details</th>
+    </tr>
+    <tr th:each="blog:${AUserBlogList}">
+        <td th:text="${blog.getTitle()}">Title 1</td>
+        <td th:text="${blog.getDate()}">Date 1</td>
+        <td>
+            <a href="viewBlogPost.html" th:href="@{'/viewBlogPost?id=' + ${blog.getId()}}">View</a>
+        </td>
+    </tr>
+    <tr th:remove="all">
+        <td>Title 2</td>
+        <td>Date 2</td>
+        <td>
+            <a href="viewBlogPost.html">View</a>
+        </td>
+
+    </tr>
+</table>
+
+</body>
+</html>
