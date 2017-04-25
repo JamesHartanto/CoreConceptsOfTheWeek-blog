@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class Post {
     private Integer id;
-    private Integer person_id;
+    private Person author;
     private String title;
     private String post;
     private String date;
@@ -17,24 +17,24 @@ public class Post {
     public Post() {
     }
 
-    public Post(Integer person_id, String title, String post, String date) {
-        this.person_id = person_id;
+    public Post(Person author, String title, String post, String date) {
+        this.author = author;
         this.title = title;
         this.post = post;
         this.date = date;
     }
 
-    public Post(Integer id, Integer person_id, String title, String post, String date) {
+    public Post(Integer id, Person author, String title, String post, String date) {
         this.id = id;
-        this.person_id = person_id;
+        this.author = author;
         this.title = title;
         this.post = post;
         this.date = date;
     }
 
-    public Post(Integer id, Integer person_id, String title, String post, String date, List<PostComment> comments) {
+    public Post(Integer id, Person author, String title, String post, String date, List<PostComment> comments) {
         this.id = id;
-        this.person_id = person_id;
+        this.author = author;
         this.title = title;
         this.post = post;
         this.date = date;
@@ -49,12 +49,12 @@ public class Post {
         this.id = id;
     }
 
-    public Integer getPerson_id() {
-        return person_id;
+    public Person getAuthor() {
+        return author;
     }
 
-    public void setPerson_id(Integer person_id) {
-        this.person_id = person_id;
+    public void setAuthor(Person person) {
+        this.author = author;
     }
 
     public String getTitle() {

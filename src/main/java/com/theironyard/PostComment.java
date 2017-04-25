@@ -5,16 +5,18 @@ package com.theironyard;
  */
 public class PostComment {
     Integer id;
+    Person author;
     String text;
-    BlogPerson commentAuthor;
+    String date;
 
     public PostComment() {
     }
 
-    public PostComment(Integer id, String text, BlogPerson commentAuthor) {
+    public PostComment(Integer id, Person author, String text, String date) {
         this.id = id;
+        this.author = author;
         this.text = text;
-        this.commentAuthor = commentAuthor;
+        this.date = date;
     }
 
     public Integer getId() {
@@ -25,6 +27,14 @@ public class PostComment {
         this.id = id;
     }
 
+    public Person getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Person author) {
+        this.author = author;
+    }
+
     public String getText() {
         return text;
     }
@@ -33,11 +43,11 @@ public class PostComment {
         this.text = text;
     }
 
-    public BlogPerson getCommentAuthor() {
-        return commentAuthor;
+    public String getDate() {
+        return date;
     }
 
-    public void setCommentAuthor(BlogPerson commentAuthor) {
-        this.commentAuthor = commentAuthor;
+    public void setDate(String date) {
+        this.date = date;
     }
 }

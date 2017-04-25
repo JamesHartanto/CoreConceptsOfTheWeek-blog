@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,17 +18,17 @@ public class PersonRepository {
     public List<Person> listPeople(){
         return jdbcTemplate.query("SELECT * FROM person",
                 (resultSet,row) -> new Person(
-                        resultSet.getInt("id"),
+                        resultSet.getInt("id_person"),
                         resultSet.getString("username"),
                         resultSet.getString("password")));
     }
 
     // Select person based on id
     public Person selectPerson(Integer userId){
-        return jdbcTemplate.queryForObject("SELECT * FROM person WHERE id = ?",
+        return jdbcTemplate.queryForObject("SELECT * FROM person WHERE id_person = ?",
                 new Object[]{userId},
                 (resultSet, i) -> new Person(
-                        resultSet.getInt("id"),
+                        resultSet.getInt("id_person"),
                         resultSet.getString("username")));
     }
 
@@ -38,7 +37,7 @@ public class PersonRepository {
         return jdbcTemplate.queryForObject("SELECT * FROM person WHERE lower(username) = lower(?)",
                 new Object[]{username},
                 (resultSet, i) -> new Person(
-                        resultSet.getInt("id"),
+                        resultSet.getInt("id_person"),
                         resultSet.getString("username"),
                         resultSet.getString("password")
                 ));
